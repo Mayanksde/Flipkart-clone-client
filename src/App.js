@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Box } from "@mui/material";
+// function App() {
+//   return (
+//     <DataProvider>
+//       <Header />
+//       {/* because material ui sets default position fixed so we want only header to be fixed so we use Box  */}
+      
+//     </DataProvider>
+//   );
+// }
 
+// export default App;
+
+
+import Header from "./Components/header/Header";
+import Home from "./Components/home/Home";
+import DataProvider from './context/DataProvider';
+import DetailView from "./Components/details/Detailview";
+import Cart from "./Components/cart/Cart";
+
+// import ContextProvider from "./context/ContextProvider";
+import { Box } from "@mui/material";
+
+
+
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+     <DataProvider>
+         <BrowserRouter>
+            <Header />
+            <Box style={{marginTop:54}}>
+              <Routes>
+
+                  <Route path="/" element={<Home />} />
+                  <Route path="/product/:id" element={<DetailView />} />
+                  <Route path="/cart" element={<Cart />} />
+
+              </Routes>
+            </Box>
+         </BrowserRouter>
+     </DataProvider>
+     
+    
   );
 }
 
